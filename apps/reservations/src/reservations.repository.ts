@@ -10,7 +10,7 @@ export class ReservationsRepository extends AbstractRepository<ReservationDocume
 
   constructor(
     @InjectModel(ReservationDocument.name)
-    reservationModel: Model<ReservationsRepository>,
+    reservationModel: Model<ReservationDocument>,
   ) {
     super(reservationModel);
   }
