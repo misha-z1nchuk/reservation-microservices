@@ -58,3 +58,6 @@ steps:
       'push',
       'europe-central2-docker.pkg.dev/fine-entry-426413-f6/payments /production',
     ]
+  
+options:
+  logging: CLOUD_LOGGING_ONLY
