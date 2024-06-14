@@ -1,0 +1,60 @@
+steps:
+  #  Reservations
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'build',
+      '-t',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/reservations/production',
+      'apps/reservations/Dockerfile',
+      '.'
+    ]
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'push',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/reservations/production',
+    ]
+
+  # Auth service
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'build',
+      '-t',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/auth/production',
+      'apps/reservations/Dockerfile',
+      '.'
+    ]
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'push',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/auth/production',
+    ]
+
+  # Notifications
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'build',
+      '-t',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/notifications/production',
+      'apps/reservations/Dockerfile',
+      '.'
+    ]
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'push',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/notifications/production',
+    ]
+
+  # Payments
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'build',
+      '-t',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/payments/production',
+      'apps/reservations/Dockerfile',
+      '.'
+    ]
+  - name: 'gcr.io/cloud-builders/docker' 
+    args: [
+      'push',
+      'europe-central2-docker.pkg.dev/fine-entry-426413-f6/payments /production',
+    ]

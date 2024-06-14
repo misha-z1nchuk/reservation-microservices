@@ -14,10 +14,16 @@ export class ReservationsService {
   ) {}
 
   async create(createReservationDto: CreateReservationDto, user: UserDto) {
+    console.log('here==1');
     return this.paymentService
-      .send('create_charge', createReservationDto.charge)
+      .send('create_charge', {
+        ...createReservationDto.charge,
+        email: user.email,
+      })
       .pipe(
         map((res) => {
+          console.log('here==2');
+
           return this.reservationsRepository.create({
             ...createReservationDto,
             timestamp: new Date(),
