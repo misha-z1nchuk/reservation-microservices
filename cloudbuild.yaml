@@ -20,7 +20,7 @@ steps:
       'build',
       '-t',
       'europe-central2-docker.pkg.dev/fine-entry-426413-f6/auth/production',
-      'apps/reservations/Dockerfile',
+      'apps/auth/Dockerfile',
       '.'
     ]
   - name: 'gcr.io/cloud-builders/docker' 
@@ -35,7 +35,7 @@ steps:
       'build',
       '-t',
       'europe-central2-docker.pkg.dev/fine-entry-426413-f6/notifications/production',
-      'apps/reservations/Dockerfile',
+      'apps/notifications/Dockerfile',
       '.'
     ]
   - name: 'gcr.io/cloud-builders/docker' 
@@ -50,7 +50,7 @@ steps:
       'build',
       '-t',
       'europe-central2-docker.pkg.dev/fine-entry-426413-f6/payments/production',
-      'apps/reservations/Dockerfile',
+      'apps/notifications/Dockerfile',
       '.'
     ]
   - name: 'gcr.io/cloud-builders/docker' 
