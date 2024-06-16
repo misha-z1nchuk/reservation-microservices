@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: auth
+  name: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - image: europe-central2-docker.pkg.dev/fine-entry-426413-f6/auth/production
+          name: auth
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb
+                  key: connectionString
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwt
+                  key: jwtSecret 
+            - name: JWT_EXPIRATION
+              value: "3600" 
+            - name: HTTP_PORT
+              value: "8081" 
+            - name: TCP_PORT
+              value: "8082" 
+          ports:
+            - containerPort: 8081
+            - containerPort: 8082

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payments
+  name: payments
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+      - image: europe-central2-docker.pkg.dev/fine-entry-426413-f6/payments/production
+        name: payments
+        env:
+          - name: TCP_PORT
+            value: "8083" 
+          - name: NOTIFICATIONS_HOST
+            value: "notifications" 
+          - name: NOTIFICATIONS_PORT
+            value: "8084" 
+          - name: STRIPE_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: stripe
+                key: apiKey 
+          
+        ports:
+         - containerPort: 8083

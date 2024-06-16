@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: notifications
+  name: notifications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notifications
+  template:
+    metadata:
+      labels:
+        app: notifications
+    spec:
+      containers:
+        - image: europe-central2-docker.pkg.dev/fine-entry-426413-f6/notifications/production
+          name: notifications
+          env: 
+            - name: TCP_PORT
+              value: '8084'
+          ports:
+            - containerPort: 8084
+
